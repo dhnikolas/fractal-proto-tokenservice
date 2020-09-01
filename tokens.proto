@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package=".;tokenservice";
+package users;
+
+service Tokens {
+  rpc CheckAccessToken (Token) returns (AuthToken) {}
+  rpc AddToken (Token) returns (TokenState) {}
+}
+
+message Token {
+  string Access = 1;
+  string Refresh = 2;
+}
+
+message AuthToken {
+  bool Exist = 1;
+  string Access = 2;
+  string Id = 3;
+}
+
+message TokenState {
+  bool Success = 1;
+}
